@@ -1,26 +1,35 @@
+import { createElement } from 'react';
 import ReactLogo from './assets/react.svg?react';
 import './index.css';
 
-// Всё это декларативный стиль
 export const App = () => {
-	let currentYear = new Date().getFullYear(); // И только это мперативный стиль
-	return (
-		<div className="App">
-			<header className="App-header">
-				<ReactLogo />
-				<p>
-					Edit <code>src/App.js</code> and save to reload. 22
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-				<p>{currentYear}</p>
-			</header>
-		</div>
+	const currentYear = new Date().getFullYear();
+	const $appRootElement = createElement(
+		'div',
+		{ className: 'App' },
+		createElement(
+			'header',
+			{ className: 'App-header' },
+			createElement(ReactLogo),
+			createElement(
+				'p',
+				{},
+				'Edit ',
+				createElement('code', {}, 'src/App.js'),
+				' and save to reload.',
+			),
+			createElement(
+				'a',
+				{
+					className: 'App-link',
+					href: 'https://reactjs.org',
+					target: '_blank',
+					rel: 'noopener noreferrer',
+				},
+				'Learn React',
+			),
+			createElement('p', {}, currentYear),
+		),
 	);
+	return $appRootElement;
 };
